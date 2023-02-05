@@ -11,7 +11,8 @@ export function template(title, content) {
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
-    <link rel="stylesheet" href="../public/styles.css">
+    <link rel="stylesheet" href="./public/styles.css">
+    <script type="module" src="./public/scripts.js"></script>
   </head>
   <body>${content}</body>
 </html>`;
@@ -28,14 +29,13 @@ export function indexTemplate(departments) {
     <h2>Deildir</h2>
     <ul>
       ${departments
-        .filter((department) => department.courses.length > 0)
+        .filter((department) => department?.courses?.length > 0)
         .map(
           (department) =>
             `<li><a href="${department.html}">${department.title}</a></li>\n`
         )
         .join('')}
-    </ul>
-  `;
+    </ul>`;
   return template('Kennsluskrá', index);
 }
 
@@ -67,16 +67,23 @@ export function departmentTemplate(title, description, courses) {
       <h2>${title}</h2>
       <p>${description}</p>
       <h3>Áfangar</h3>
-      <table>
-        <tr>
-          <th>Númer</th>
-          <th>Heiti</th>
-          <th>Einingar</th>
-          <th>Misseri</th>
-          <th>Námsstig</th>
-        </tr>
-        ${courses.map(courseTemplate).join('')}
-      </table>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Númer</th>
+              <th>Heiti</th>
+              <th>Einingar</th>
+              <th>Misseri</th>
+              <th>Námsstig</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${courses.map(courseTemplate).join('')}
+          </tbody>
+        </table>
+      </div>
+      <p><a href="./index.html">Til baka</a></p>
     </div>
   `;
 
