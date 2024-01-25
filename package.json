@@ -30,5 +30,10 @@
     "stylelint": "^14.16.1",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-config-standard": "^29.0.0"
+  },
+  "dependencies": {
+    "connect": "^3.7.0",
+    "serve-static": "^1.15.0",
+    "yarn": "^1.22.21"
   }
 }

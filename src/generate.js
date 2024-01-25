@@ -11,8 +11,9 @@ async function main() {
   await createDirIfNotExists(OUTPUT_DIR);
 
   const indexFile = await readFile(join(INPUT_DIR, 'index.json'));
+  console.log(`indexFiel: ${  indexFile}`);
   const indexData = parseJson(indexFile);
-
+  console.log(` parsed:::::::::::::::::::::${  indexData}`);
   const departments = [];
 
   for await (const item of indexData) {
@@ -27,7 +28,7 @@ async function main() {
       { flag: 'w+' }
     );
     item.courses = courses;
-
+    console.log(`pushes item: ${  item.csv ?? 'ekki til'}`);
     departments.push(item);
   }
 
